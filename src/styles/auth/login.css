@@ -1,0 +1,1096 @@
+/* =========================================================
+   SWAHILI AGENT APP
+   LOGIN PAGE
+   ========================================================= */
+
+:root {
+  --sw-orange: #ff7a00;
+  --sw-orange-light: #ffa500;
+
+  --sw-blue: #0077b6;
+  --sw-blue-light: #00b4d8;
+
+  --sw-aqua: #48cae4;
+
+  --sw-navy: #0b1736;
+  --sw-navy-light: #12254d;
+
+  --sw-white: #ffffff;
+
+  --sw-text: #172033;
+  --sw-text-light: #64748b;
+
+  --sw-border: #dbe2ea;
+
+  --sw-bg: #071128;
+}
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow-y: auto;
+}
+
+/* =========================================================
+   MAIN WRAPPER
+   ========================================================= */
+
+.sw-agent-login-wrapper {
+  min-height: 100vh;
+  width: 100%;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 25px;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(0, 180, 216, 0.12),
+      transparent 28%
+    ),
+    radial-gradient(circle at 90% 90%, rgba(255, 122, 0, 0.1), transparent 30%),
+    linear-gradient(135deg, #071128 0%, #0b1736 45%, #10254a 100%);
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+   ========================================================= */
+
+.sw-agent-login-wrapper::before {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  top: -220px;
+  right: -160px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 122, 0, 0.12),
+    rgba(255, 122, 0, 0)
+  );
+
+  pointer-events: none;
+}
+
+.sw-agent-login-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  bottom: -280px;
+  left: -220px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(72, 202, 228, 0.1),
+    rgba(72, 202, 228, 0)
+  );
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   CENTER
+   ========================================================= */
+
+.sw-agent-login-center {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   MAIN CARD
+   ========================================================= */
+
+.sw-agent-login-card {
+  width: 100%;
+  max-width: 1180px;
+
+  min-height: 700px;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(420px, 0.82fr);
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: #ffffff;
+
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.35);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================================================
+   LEFT PANEL
+   ========================================================= */
+
+.sw-agent-login-left {
+  min-height: 700px;
+
+  padding: 55px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  color: white;
+
+  background: linear-gradient(145deg, #0b1736 0%, #102652 55%, #0d3860 100%);
+}
+
+/* Decorative circle */
+
+.sw-agent-login-left::before {
+  content: "";
+
+  position: absolute;
+
+  width: 380px;
+  height: 380px;
+
+  top: -170px;
+  right: -150px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(255, 122, 0, 0.2),
+    rgba(255, 122, 0, 0.02)
+  );
+}
+
+/* Second circle */
+
+.sw-agent-login-left::after {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  bottom: -150px;
+  left: -130px;
+
+  border-radius: 50%;
+
+  border: 65px solid rgba(72, 202, 228, 0.06);
+}
+
+/* =========================================================
+   LEFT CONTENT
+   ========================================================= */
+
+.sw-agent-login-left-content {
+  height: 100%;
+
+  position: relative;
+
+  z-index: 3;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.sw-agent-logo {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+.sw-agent-logo-mark {
+  width: 52px;
+  height: 52px;
+
+  border-radius: 15px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, var(--sw-orange), var(--sw-orange-light));
+
+  box-shadow: 0 10px 30px rgba(255, 122, 0, 0.28);
+
+  position: relative;
+
+  overflow: hidden;
+}
+
+.sw-agent-logo-mark::after {
+  content: "";
+
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+
+  top: -15px;
+  right: -15px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.sw-agent-logo-mark span {
+  position: relative;
+
+  z-index: 2;
+
+  color: #ffffff;
+
+  font-size: 30px;
+
+  font-weight: 800;
+
+  font-style: italic;
+}
+
+.sw-agent-logo-text {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.sw-agent-logo-text strong {
+  font-size: 20px;
+
+  font-weight: 800;
+
+  color: #ffffff;
+
+  line-height: 1.1;
+}
+
+.sw-agent-logo-text span {
+  margin-top: 4px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 11px;
+
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   LEFT HERO
+   ========================================================= */
+
+.sw-agent-login-hero {
+  margin-top: auto;
+
+  margin-bottom: auto;
+
+  max-width: 570px;
+}
+
+.sw-agent-login-badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 7px 13px;
+
+  border-radius: 50px;
+
+  background: rgba(255, 255, 255, 0.07);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.3px;
+}
+
+.sw-agent-login-badge-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--sw-orange-light);
+
+  box-shadow: 0 0 0 4px rgba(255, 165, 0, 0.1);
+}
+
+.sw-agent-login-hero h1 {
+  margin: 25px 0 17px;
+
+  font-size: 40px;
+
+  line-height: 1.15;
+
+  font-weight: 800;
+
+  letter-spacing: -1.5px;
+
+  color: #ffffff;
+}
+
+.sw-agent-login-hero h1 span {
+  background: linear-gradient(90deg, var(--sw-orange-light), var(--sw-aqua));
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+.sw-agent-login-hero p {
+  max-width: 500px;
+
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.62);
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.sw-agent-login-features {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 17px;
+
+  margin-top: 35px;
+}
+
+.sw-agent-feature {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+}
+
+.sw-agent-feature-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--sw-orange-light);
+
+  background: rgba(255, 122, 0, 0.11);
+
+  border: 1px solid rgba(255, 122, 0, 0.12);
+}
+
+.sw-agent-feature-content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.sw-agent-feature-content strong {
+  color: rgba(255, 255, 255, 0.92);
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+.sw-agent-feature-content span {
+  color: rgba(255, 255, 255, 0.45);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   LEFT FOOTER
+   ========================================================= */
+
+.sw-agent-left-footer {
+  margin-top: auto;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+}
+
+.sw-agent-left-footer p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 11px;
+
+  font-weight: 600;
+}
+
+.sw-agent-left-footer span {
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 10px;
+}
+
+/* =========================================================
+   RIGHT LOGIN PANEL
+   ========================================================= */
+
+.sw-agent-login-right {
+  min-height: 700px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 55px;
+
+  background: #ffffff;
+}
+
+/* =========================================================
+   FORM CONTENT
+   ========================================================= */
+
+.sw-agent-login-form-content {
+  width: 100%;
+
+  max-width: 410px;
+}
+
+/* =========================================================
+   FORM HEADER
+   ========================================================= */
+
+.sw-agent-login-header {
+  margin-bottom: 32px;
+}
+
+.sw-agent-login-header-label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: var(--sw-orange);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.sw-agent-login-header h2 {
+  margin: 0;
+
+  color: var(--sw-navy);
+
+  font-size: 32px;
+
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -1px;
+}
+
+.sw-agent-login-header p {
+  margin: 10px 0 0;
+
+  color: var(--sw-text-light);
+
+  font-size: 14px;
+
+  line-height: 1.6;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.sw-agent-login-form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 21px;
+}
+
+/* LABEL */
+
+.sw-agent-label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #1e293b;
+
+  font-size: 12px;
+
+  font-weight: 700;
+}
+
+/* INPUT */
+
+/* =========================================================
+   SWAHILI AUTH INPUT
+========================================================= */
+
+.sw-auth-input {
+  height: 54px !important;
+
+  border-radius: 11px !important;
+
+  border: 1px solid var(--sw-border);
+
+  background: #ffffff !important;
+
+  color: #172033 !important;
+
+  font-size: 15px !important;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease !important;
+}
+
+/* Prefix icon */
+
+.sw-auth-input .ant-input-prefix {
+  margin-right: 12px;
+
+  color: #7d8d9c;
+
+  font-size: 18px;
+}
+
+/* Text */
+
+.sw-auth-input .ant-input {
+  font-size: 15px !important;
+
+  color: #172033 !important;
+}
+
+/* Placeholder */
+
+.sw-auth-input .ant-input::placeholder {
+  color: #a3afb9 !important;
+
+  font-size: 14px;
+}
+
+/* Hover */
+
+.sw-auth-input:hover {
+  border-color: #bfc9d6 !important;
+}
+
+/* Focus */
+
+.sw-auth-input:focus,
+.sw-auth-input.ant-input-affix-wrapper-focused {
+  border-color: var(--sw-orange) !important;
+
+  box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.1) !important;
+}
+
+/* Password eye icon */
+
+.sw-auth-input .ant-input-password-icon {
+  color: #8493a2;
+
+  font-size: 17px;
+}
+
+.sw-auth-input .ant-input-password-icon:hover {
+  color: #0077b6;
+}
+
+.sw-auth-input.ant-input-status-error,
+.sw-auth-input.ant-input-affix-wrapper-status-error {
+  border-color: #dc3545 !important;
+}
+
+/* =========================================================
+   FORM OPTIONS
+   ========================================================= */
+
+.sw-agent-login-options {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-top: -3px;
+}
+
+.sw-agent-remember {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color: #64748b;
+
+  font-size: 12px;
+
+  cursor: pointer;
+}
+
+.sw-agent-remember input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.custom-checkbox {
+  width: 17px;
+  height: 17px;
+
+  display: inline-block;
+
+  border: 1px solid #cbd7e0;
+
+  border-radius: 4px;
+
+  background: #ffffff;
+
+  transition: 0.2s ease;
+}
+
+.sw-agent-remember input:checked + .custom-checkbox {
+  background: var(--sw-orange);
+  border-color: var(--sw-orange);
+}
+
+.sw-agent-forgot {
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: var(--sw-orange);
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.sw-agent-forgot:hover {
+  color: var(--sw-blue);
+}
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.sw-agent-login-button {
+  width: 100%;
+
+  height: 56px;
+
+  border: 0;
+
+  border-radius: 14px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  color: #ffffff;
+
+  background: linear-gradient(
+    135deg,
+    var(--sw-orange) 0%,
+    var(--sw-orange-light) 100%
+  );
+
+  font-size: 14px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.22);
+
+  transition: all 0.25s ease;
+}
+
+.sw-agent-login-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+
+  box-shadow: 0 14px 32px rgba(255, 122, 0, 0.3);
+}
+
+.sw-agent-login-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.sw-agent-login-button:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   LOGIN ERROR ALERT
+========================================================= */
+
+.login-error-alert {
+  margin-bottom: 26px !important;
+
+  padding: 14px 16px !important;
+
+  border: 1px solid #f5c2c7 !important;
+  border-radius: 12px !important;
+
+  background: #fff5f5 !important;
+
+  box-shadow: 0 4px 14px rgba(220, 53, 69, 0.06) !important;
+}
+
+/* Error icon */
+
+.login-error-alert .ant-alert-icon {
+  margin-top: 2px !important;
+
+  color: #dc3545 !important;
+
+  font-size: 18px !important;
+}
+
+/* Title */
+
+.login-error-alert .ant-alert-title {
+  margin-bottom: 3px !important;
+
+  color: #842029 !important;
+
+  font-size: 13px !important;
+  font-weight: 700 !important;
+}
+
+/* Description */
+
+.login-error-alert .ant-alert-description {
+  color: #8a3d46 !important;
+
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+}
+
+/* Close button */
+
+.login-error-alert .ant-alert-close-icon {
+  color: #a9444d !important;
+
+  font-size: 12px !important;
+
+  transition: all 0.2s ease;
+}
+
+.login-error-alert .ant-alert-close-icon:hover {
+  color: #dc3545 !important;
+
+  transform: scale(1.1);
+}
+
+.login-button-spinner .ant-spin-dot-item {
+  background-color: #ffffff;
+}
+
+/* =========================================================
+   SECURITY NOTICE
+   ========================================================= */
+
+.sw-agent-security {
+  margin-top: 25px;
+
+  padding: 13px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  border-radius: 11px;
+
+  background: #f8fafc;
+
+  border: 1px solid #edf1f5;
+}
+
+.sw-agent-security-icon {
+  width: 31px;
+  height: 31px;
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #fff3e8;
+
+  color: var(--sw-orange);
+
+  font-size: 13px;
+}
+
+.sw-agent-security-text {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+.sw-agent-security-text strong {
+  color: var(--sw-navy);
+
+  font-size: 10px;
+}
+
+.sw-agent-security-text span {
+  color: #8993a3;
+
+  font-size: 9px;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.sw-agent-error {
+  padding: 11px 13px;
+
+  border-radius: 10px;
+
+  background: #fff1f2;
+
+  color: #dc2626;
+
+  border: 1px solid #ffe0e3;
+
+  font-size: 12px;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.sw-agent-spinner {
+  width: 15px;
+  height: 15px;
+
+  border-radius: 50%;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  border-top-color: white;
+
+  animation: sw-agent-spin 0.7s linear infinite;
+}
+
+@keyframes sw-agent-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 991px) {
+  .sw-agent-login-wrapper {
+    padding: 25px 18px;
+  }
+
+  .sw-agent-login-card {
+    grid-template-columns:
+      minmax(0, 0.9fr)
+      minmax(380px, 1fr);
+
+    min-height: 650px;
+  }
+
+  .sw-agent-login-left {
+    min-height: 650px;
+
+    padding: 40px;
+  }
+
+  .sw-agent-login-right {
+    min-height: 650px;
+
+    padding: 40px;
+  }
+
+  .sw-agent-login-hero h1 {
+    font-size: 37px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  .sw-agent-login-wrapper {
+    padding: 0;
+
+    align-items: stretch;
+  }
+
+  .sw-agent-login-center {
+    align-items: stretch;
+  }
+
+  .sw-agent-login-card {
+    min-height: 100vh;
+
+    display: block;
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+  .sw-agent-login-left {
+    display: none;
+  }
+
+  .sw-agent-login-right {
+    min-height: 100vh;
+
+    padding: 35px 22px;
+
+    align-items: center;
+  }
+
+  .sw-agent-login-form-content {
+    max-width: 450px;
+  }
+
+  .sw-agent-login-header h2 {
+    font-size: 28px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .sw-agent-login-right {
+    padding: 25px 18px;
+  }
+
+  .sw-agent-login-header {
+    margin-bottom: 27px;
+  }
+
+  .sw-agent-login-header h2 {
+    font-size: 25px;
+  }
+
+  .sw-agent-login-header p {
+    font-size: 13px;
+  }
+
+  .sw-agent-input {
+    height: 52px;
+  }
+
+  .sw-agent-login-button {
+    height: 53px;
+  }
+}
+
+.sw-agent-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.sw-agent-login-left-content {
+  min-height: 590px;
+}

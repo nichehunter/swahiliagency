@@ -1,0 +1,750 @@
+:root {
+  --sw-orange: #ff7a00;
+  --sw-orange-light: #ffa500;
+  --sw-blue: #0077b6;
+  --sw-blue-light: #00b4d8;
+  --sw-aqua: #48cae4;
+  --sw-navy: #0b1736;
+  --sw-navy-light: #12254d;
+  --sw-white: #ffffff;
+  --sw-text: #172033;
+  --sw-text-light: #64748b;
+  --sw-border: #dbe2ea;
+}
+
+/* =========================================================
+   PAGE
+========================================================= */
+
+.sw-agent-otp-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 50px 25px;
+
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(255, 122, 0, 0.14),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 80%,
+      rgba(72, 202, 228, 0.12),
+      transparent 30%
+    ),
+    linear-gradient(135deg, #050d20 0%, var(--sw-navy) 50%, #101f42 100%);
+}
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.sw-agent-otp-card {
+  width: 100%;
+  max-width: 1180px;
+  min-height: 700px;
+
+  display: grid;
+  grid-template-columns: 45% 55%;
+
+  overflow: hidden;
+
+  border-radius: 28px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35),
+    0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* =========================================================
+   LEFT PANEL
+========================================================= */
+
+.sw-agent-otp-left {
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(255, 122, 0, 0.22),
+      transparent 30%
+    ),
+    linear-gradient(145deg, var(--sw-navy) 0%, #10254b 55%, #07577b 100%);
+
+  color: white;
+}
+
+.sw-agent-otp-left::before {
+  content: "";
+
+  position: absolute;
+
+  width: 300px;
+  height: 300px;
+
+  border-radius: 50%;
+
+  right: -150px;
+  top: -120px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sw-agent-otp-left::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  left: -130px;
+  bottom: -120px;
+
+  background: rgba(255, 122, 0, 0.08);
+}
+
+.sw-agent-otp-left-content {
+  position: relative;
+  z-index: 2;
+
+  min-height: 700px;
+
+  padding: 55px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.sw-agent-otp-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sw-agent-otp-logo-mark {
+  width: 46px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 13px;
+
+  background: linear-gradient(135deg, var(--sw-orange), var(--sw-orange-light));
+
+  box-shadow: 0 10px 25px rgba(255, 122, 0, 0.25);
+}
+
+.sw-agent-otp-logo-mark span {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+}
+
+.sw-agent-otp-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.sw-agent-otp-logo-text strong {
+  font-size: 21px;
+  line-height: 1.1;
+  letter-spacing: -0.5px;
+}
+
+.sw-agent-otp-logo-text span {
+  margin-top: 3px;
+
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.62);
+
+  letter-spacing: 0.7px;
+}
+
+/* =========================================================
+   LEFT MAIN
+========================================================= */
+
+.sw-agent-otp-left-main {
+  margin-top: 45px;
+  max-width: 430px;
+}
+
+.sw-agent-otp-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 25px;
+
+  border-radius: 17px;
+
+  color: var(--sw-orange);
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  font-size: 25px;
+}
+
+.sw-agent-otp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 18px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.5px;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.sw-agent-otp-badge span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--sw-orange);
+
+  box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12);
+}
+
+.sw-agent-otp-left-main h1 {
+  margin: 0;
+
+  font-size: 39px;
+  line-height: 1.15;
+
+  letter-spacing: -1.5px;
+
+  font-weight: 750;
+}
+
+.sw-agent-otp-left-main h1 span {
+  background: linear-gradient(90deg, var(--sw-orange), var(--sw-aqua));
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sw-agent-otp-left-main > p {
+  margin: 22px 0 0;
+
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* =========================================================
+   SECURITY BOX
+========================================================= */
+
+.sw-agent-otp-security {
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+
+  margin-top: 30px;
+  padding: 16px;
+
+  border-radius: 14px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sw-agent-otp-security > svg {
+  margin-top: 2px;
+
+  color: var(--sw-orange);
+
+  font-size: 18px;
+}
+
+.sw-agent-otp-security div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sw-agent-otp-security strong {
+  font-size: 13px;
+}
+
+.sw-agent-otp-security span {
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.sw-agent-otp-left-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding-top: 25px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sw-agent-otp-left-footer p {
+  margin: 0;
+
+  font-size: 11px;
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.sw-agent-otp-left-footer span {
+  font-size: 10px;
+
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* =========================================================
+   RIGHT PANEL
+========================================================= */
+
+.sw-agent-otp-right {
+  background: #ffffff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 55px;
+}
+
+.sw-agent-otp-form-content {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.sw-agent-otp-right-icon {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 24px;
+
+  border-radius: 16px;
+
+  color: var(--sw-orange);
+
+  background: #fff7ed;
+
+  border: 1px solid rgba(255, 122, 0, 0.12);
+
+  font-size: 25px;
+}
+
+.sw-agent-otp-header {
+  margin-bottom: 38px;
+}
+
+.sw-agent-otp-header > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  letter-spacing: 1.7px;
+
+  color: var(--sw-orange);
+}
+
+.sw-agent-otp-header h2 {
+  margin: 0;
+
+  font-size: 30px;
+  line-height: 1.2;
+
+  letter-spacing: -0.8px;
+
+  color: var(--sw-text);
+}
+
+.sw-agent-otp-header p {
+  margin: 12px 0 0;
+
+  max-width: 410px;
+
+  font-size: 14px;
+  line-height: 1.7;
+
+  color: var(--sw-text-light);
+}
+
+/* =========================================================
+   OTP INPUTS
+========================================================= */
+
+.sw-agent-otp-inputs {
+  display: grid;
+
+  grid-template-columns: repeat(6, 1fr);
+
+  gap: 12px;
+
+  width: 100%;
+}
+
+.sw-agent-otp-input {
+  width: 100%;
+  height: 68px;
+
+  padding: 0;
+
+  text-align: center;
+
+  font-size: 25px;
+  font-weight: 700;
+
+  color: var(--sw-text);
+
+  background: #ffffff;
+
+  border: 1.5px solid var(--sw-border);
+
+  border-radius: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sw-agent-otp-input:hover {
+  border-color: rgba(255, 122, 0, 0.55);
+}
+
+.sw-agent-otp-input:focus {
+  border-color: var(--sw-orange);
+
+  box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.12);
+
+  transform: translateY(-2px);
+}
+
+.sw-agent-otp-input:disabled {
+  cursor: not-allowed;
+
+  background: #f8fafc;
+
+  opacity: 0.7;
+}
+
+.sw-agent-otp-inputs-verifying .sw-agent-otp-input {
+  border-color: var(--sw-orange);
+}
+
+/* =========================================================
+   BACK
+========================================================= */
+
+.verify-back {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 19px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #64748b;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.verify-back:hover {
+  color: #0077b6;
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.sw-agent-otp-status {
+  min-height: 76px;
+
+  margin-top: 22px;
+
+  text-align: center;
+}
+
+.sw-agent-otp-timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  font-size: 15px;
+
+  color: var(--sw-text-light);
+}
+
+.sw-agent-otp-timer strong {
+  color: var(--sw-orange);
+
+  font-weight: 750;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.sw-agent-otp-timer-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--sw-orange);
+
+  box-shadow: 0 0 0 4px rgba(255, 122, 0, 0.1);
+}
+
+.sw-agent-otp-status p {
+  margin: 9px 0 0;
+
+  font-size: 11px;
+
+  color: #94a3b8;
+}
+
+.sw-agent-otp-verifying {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  color: var(--sw-orange);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.sw-agent-otp-spinner {
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid rgba(255, 122, 0, 0.2);
+  border-top-color: var(--sw-orange);
+
+  border-radius: 50%;
+
+  animation: swAgentOtpSpin 0.7s linear infinite;
+}
+
+.sw-agent-otp-expired {
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #dc2626;
+}
+
+@keyframes swAgentOtpSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   SECURITY NOTE
+========================================================= */
+
+.sw-agent-otp-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-top: 28px;
+  padding: 16px;
+
+  border-radius: 14px;
+
+  background: #fff8f2;
+
+  border: 1px solid rgba(255, 122, 0, 0.12);
+}
+
+.sw-agent-otp-note > svg {
+  margin-top: 2px;
+
+  color: var(--sw-orange);
+
+  font-size: 18px;
+}
+
+.sw-agent-otp-note div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sw-agent-otp-note strong {
+  font-size: 12px;
+
+  color: var(--sw-text);
+}
+
+.sw-agent-otp-note span {
+  font-size: 11px;
+  line-height: 1.5;
+
+  color: var(--sw-text-light);
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 991px) {
+  .sw-agent-otp-card {
+    grid-template-columns: 1fr;
+
+    max-width: 650px;
+  }
+
+  .sw-agent-otp-left {
+    display: none;
+  }
+
+  .sw-agent-otp-right {
+    min-height: 700px;
+
+    padding: 55px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 576px) {
+  .sw-agent-otp-wrapper {
+    padding: 0;
+  }
+
+  .sw-agent-otp-card {
+    min-height: 100vh;
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+  .sw-agent-otp-right {
+    min-height: 100vh;
+
+    padding: 35px 22px;
+  }
+
+  .sw-agent-otp-header {
+    margin-bottom: 30px;
+  }
+
+  .sw-agent-otp-header h2 {
+    font-size: 26px;
+  }
+
+  .sw-agent-otp-header p {
+    font-size: 13px;
+  }
+
+  .sw-agent-otp-inputs {
+    gap: 7px;
+  }
+
+  .sw-agent-otp-input {
+    height: 58px;
+
+    border-radius: 11px;
+
+    font-size: 21px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  .sw-agent-otp-right {
+    padding: 30px 16px;
+  }
+
+  .sw-agent-otp-inputs {
+    gap: 5px;
+  }
+
+  .sw-agent-otp-input {
+    height: 54px;
+
+    font-size: 19px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .sw-agent-otp-input,
+  .sw-agent-otp-spinner {
+    transition: none;
+    animation: none;
+  }
+}

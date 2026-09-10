@@ -1,0 +1,357 @@
+/* =========================================================
+   CONFIRMATION MODAL
+   ========================================================= */
+
+.sw-auth-confirm {
+  width: 350px !important;
+  max-width: calc(100vw - 32px);
+}
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.sw-auth-confirm .ant-modal-content {
+  padding: 0 !important;
+  overflow: hidden;
+
+  border: 1px solid #e8edf3;
+  border-radius: 14px !important;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 24px 60px rgba(15, 23, 42, 0.16),
+    0 8px 20px rgba(15, 23, 42, 0.06);
+}
+
+/* Remove Ant Design default structure spacing */
+
+.sw-auth-confirm .ant-modal-confirm-body-wrapper,
+.sw-auth-confirm .ant-modal-confirm-body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.sw-auth-confirm .ant-modal-confirm-title {
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 24px 24px 0 !important;
+}
+
+.sw-auth-confirm-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+}
+
+/* =========================================================
+   ICON
+   ========================================================= */
+
+.sw-auth-confirm-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 50%;
+
+  font-size: 25px;
+
+  transition: all 0.2s ease;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.sw-auth-confirm-heading {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  letter-spacing: -0.1px;
+}
+
+/* =========================================================
+   BODY
+   ========================================================= */
+
+.sw-auth-confirm .ant-modal-confirm-content {
+  width: 100% !important;
+
+  margin: 0 !important;
+  padding: 10px 30px 0 !important;
+
+  text-align: center;
+}
+
+.sw-auth-confirm-body {
+  margin: 0;
+  padding: 0;
+}
+
+.sw-auth-confirm-message {
+  max-width: 320px;
+
+  margin: 0 auto;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 400;
+
+  line-height: 1.6;
+
+  text-align: center;
+}
+
+/* =========================================================
+   BUTTON CONTAINER
+   ========================================================= */
+
+.sw-auth-confirm .ant-modal-confirm-btns {
+  display: flex !important;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  margin: 0 !important;
+
+  padding: 24px !important;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.sw-auth-confirm .ant-modal-confirm-btns .ant-btn {
+  flex: 1;
+
+  height: 36px !important;
+
+  min-width: 0;
+
+  margin: 0 !important;
+  padding: 0 15px !important;
+
+  border-radius: 7px !important;
+
+  font-size: 11.5px !important;
+  font-weight: 600 !important;
+
+  box-shadow: none !important;
+
+  transition:
+    transform 0.15s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease !important;
+}
+
+.sw-auth-confirm .ant-modal-confirm-btns .ant-btn:hover {
+  transform: translateY(-1px);
+}
+
+.sw-auth-confirm .ant-modal-confirm-btns .ant-btn:active {
+  transform: translateY(0);
+}
+
+/* =========================================================
+   CANCEL
+   ========================================================= */
+
+.sw-auth-confirm-cancel {
+  color: #475569 !important;
+
+  background: #ffffff !important;
+
+  border: 1px solid #d8e0e9 !important;
+}
+
+.sw-auth-confirm-cancel:hover {
+  color: #172033 !important;
+
+  background: #f8fafc !important;
+
+  border-color: #b8c4d1 !important;
+}
+
+/* =========================================================
+   SUCCESS
+   ========================================================= */
+
+.sw-auth-confirm-success .sw-auth-confirm-icon {
+  color: #16a34a;
+
+  background: #ecfdf3;
+
+  border: 1px solid #bbf7d0;
+
+  box-shadow: 0 0 0 6px #f7fef9;
+}
+
+.sw-auth-confirm-ok-success {
+  color: #ffffff !important;
+
+  background: #16a34a !important;
+
+  border: 1px solid #16a34a !important;
+}
+
+.sw-auth-confirm-ok-success:hover {
+  color: #ffffff !important;
+
+  background: #15803d !important;
+
+  border-color: #15803d !important;
+
+  box-shadow: 0 4px 10px rgba(22, 163, 74, 0.2) !important;
+}
+
+/* =========================================================
+   WARNING
+   ========================================================= */
+
+.sw-auth-confirm-warning .sw-auth-confirm-icon {
+  color: #d97706;
+
+  background: #fff7ed;
+
+  border: 1px solid #fed7aa;
+
+  box-shadow: 0 0 0 6px #fffbf5;
+}
+
+.sw-auth-confirm-ok-warning {
+  color: #ffffff !important;
+
+  background: #d97706 !important;
+
+  border: 1px solid #d97706 !important;
+}
+
+.sw-auth-confirm-ok-warning:hover {
+  color: #ffffff !important;
+
+  background: #b45309 !important;
+
+  border-color: #b45309 !important;
+
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.2) !important;
+}
+
+/* =========================================================
+   DANGER
+   ========================================================= */
+
+.sw-auth-confirm-danger .sw-auth-confirm-icon {
+  color: #dc2626;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+
+  box-shadow: 0 0 0 6px #fffafa;
+}
+
+.sw-auth-confirm-ok-danger {
+  color: #ffffff !important;
+
+  background: #dc2626 !important;
+
+  border: 1px solid #dc2626 !important;
+}
+
+.sw-auth-confirm-ok-danger:hover {
+  color: #ffffff !important;
+
+  background: #b91c1c !important;
+
+  border-color: #b91c1c !important;
+
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.2) !important;
+}
+
+/* =========================================================
+   INFO
+   ========================================================= */
+
+.sw-auth-confirm-info .sw-auth-confirm-icon {
+  color: #2563eb;
+
+  background: #eff6ff;
+
+  border: 1px solid #bfdbfe;
+
+  box-shadow: 0 0 0 6px #f8fbff;
+}
+
+.sw-auth-confirm-ok-info {
+  color: #ffffff !important;
+
+  background: #2563eb !important;
+
+  border: 1px solid #2563eb !important;
+}
+
+.sw-auth-confirm-ok-info:hover {
+  color: #ffffff !important;
+
+  background: #1d4ed8 !important;
+
+  border-color: #1d4ed8 !important;
+
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2) !important;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.sw-auth-confirm .ant-btn-loading {
+  opacity: 0.75;
+  cursor: wait;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .sw-auth-confirm {
+    width: calc(100vw - 32px) !important;
+  }
+
+  .sw-auth-confirm .ant-modal-confirm-title {
+    padding: 22px 20px 0 !important;
+  }
+
+  .sw-auth-confirm .ant-modal-confirm-content {
+    padding: 10px 22px 0 !important;
+  }
+
+  .sw-auth-confirm .ant-modal-confirm-btns {
+    padding: 20px !important;
+  }
+}

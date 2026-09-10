@@ -1,0 +1,130 @@
+/* =========================================================
+   BASE BUTTON
+========================================================= */
+
+.sw-auth-btn {
+  height: 38px;
+  padding: 0 17px;
+
+  border-radius: 8px !important;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition: all 0.2s ease;
+}
+
+/* =========================================================
+   PRIMARY
+========================================================= */
+
+.sw-auth-btn-primary {
+  color: #ffffff !important;
+  background: #2563eb !important;
+  border-color: #2563eb !important;
+}
+
+.sw-auth-btn-primary:hover {
+  background: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+}
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+.sw-auth-btn-save {
+  color: #ffffff !important;
+  background: #16a34a !important;
+  border-color: #16a34a !important;
+}
+
+.sw-auth-btn-save:hover {
+  background: #15803d !important;
+  border-color: #15803d !important;
+}
+
+/* =========================================================
+   CANCEL
+========================================================= */
+
+.sw-auth-btn-cancel {
+  color: #475569 !important;
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+.sw-auth-btn-cancel:hover {
+  color: #334155 !important;
+  background: #f8fafc !important;
+  border-color: #94a3b8 !important;
+}
+
+/* =========================================================
+   DANGER
+========================================================= */
+
+.sw-auth-btn-danger {
+  color: #ffffff !important;
+  background: #dc2626 !important;
+  border-color: #dc2626 !important;
+}
+
+.sw-auth-btn-danger:hover {
+  background: #b91c1c !important;
+  border-color: #b91c1c !important;
+}
+
+/* =========================================================
+   WARNING
+========================================================= */
+
+.sw-auth-btn-warning {
+  color: #ffffff !important;
+  background: #d97706 !important;
+  border-color: #d97706 !important;
+}
+
+.sw-auth-btn-warning:hover {
+  background: #b45309 !important;
+  border-color: #b45309 !important;
+}
+
+/* =========================================================
+   SECONDARY
+========================================================= */
+
+.sw-auth-btn-secondary {
+  color: #334155 !important;
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+.sw-auth-btn-secondary:hover {
+  background: #e2e8f0 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* =========================================================
+   GHOST
+========================================================= */
+
+.sw-auth-btn-ghost {
+  color: #475569 !important;
+  background: transparent !important;
+  border-color: transparent !important;
+}
+
+.sw-auth-btn-ghost:hover {
+  color: #2563eb !important;
+  background: #eff6ff !important;
+}
+
+/* =========================================================
+   DISABLED
+========================================================= */
+
+.sw-auth-btn.ant-btn-disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}

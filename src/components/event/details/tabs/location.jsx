@@ -1,60 +1,33 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+
 import {
   loadEventLocation,
   patchEventLocation,
 } from "@/services/agent/eventService";
-import { Button, Input, message } from "antd";
+
+import { Button, Input } from "antd";
+
 import { useNotify } from "@/components/common/NotificationProvider";
 import { useConfirm } from "@/components/common/ConfirmProvider";
 import { useLoading } from "@/components/common/LoadingProvider";
+
 import { LocationSkeleton } from "@/components/common/sekeleton/LocationSkeleton";
+
 import {
   EditOutlined,
   EnvironmentOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
-import L from "leaflet";
+
 import { toSmartTitleCase } from "@/lib/utils/char";
 
-const locationIcon = L.divIcon({
-  className: "sw-details-location-marker",
-  html: `
-    <div class="sw-details-location-marker-wrapper">
 
-      <!-- Pulse / wave -->
-      <div class="sw-details-location-pulse"></div>
-
-      <!-- Marker -->
-      <div class="sw-details-location-marker-inner">
-        <svg
-          width="50"
-          height="50"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M12 21C12 21 19 15.5 19 9.5C19 5.91 15.87 3 12 3C8.13 3 5 5.91 5 9.5C5 15.5 12 21 12 21Z"
-            fill="#ff7a00"
-            stroke="white"
-            stroke-width="1.5"
-          />
-
-          <circle
-            cx="12"
-            cy="9.5"
-            r="2.5"
-            fill="white"
-          />
-        </svg>
-      </div>
-
-    </div>
-  `,
-  iconSize: [50, 68],
-  iconAnchor: [25, 50],
+const LocationMap = dynamic(() => import("./LocationMap"), {
+  ssr: false,
+  loading: () => <LocationSkeleton />,
 });
 
 export const LocationTab = ({ dataId }) => {
@@ -63,6 +36,7 @@ export const LocationTab = ({ dataId }) => {
   const [data, setData] = useState(null);
   const [originalData, setOriginalData] = useState(null);
   const [index, setIndex] = useState(0);
+
   const notify = useNotify();
   const confirm = useConfirm();
   const loading = useLoading();
@@ -80,6 +54,7 @@ export const LocationTab = ({ dataId }) => {
         setOriginalData(response);
       } catch (error) {
         const responseData = error?.response?.data;
+
         let errorMessage = "Something went wrong. Please try again.";
 
         if (typeof responseData === "string") {
@@ -90,13 +65,18 @@ export const LocationTab = ({ dataId }) => {
           errorMessage = responseData.detail;
         } else if (responseData?.message) {
           errorMessage = responseData.message;
-        } else if (typeof responseData === "object") {
+        } else if (
+          responseData &&
+          typeof responseData === "object"
+        ) {
           const firstKey = Object.keys(responseData)[0];
           const firstError = responseData[firstKey];
+
           if (Array.isArray(firstError)) {
             errorMessage = `${firstError[0]}`;
           }
         }
+
         notify.error("Failed to Load Event", errorMessage);
       } finally {
         setLoadingData(false);
@@ -104,10 +84,12 @@ export const LocationTab = ({ dataId }) => {
     };
 
     fetchData();
-  }, [dataId, index]);
+  }, [dataId, index, notify]);
 
   const buildChangedPayload = () => {
-    if (!data || !originalData) return {};
+    if (!data || !originalData) {
+      return {};
+    }
 
     const fields = ["address", "latitude", "longitude"];
 
@@ -135,10 +117,10 @@ export const LocationTab = ({ dataId }) => {
       return;
     }
 
-    // Validate location
-    const latitude = data?.latitude;
-    const longitude = data?.longitude;
+    const latitude = Number(data?.latitude);
+    const longitude = Number(data?.longitude);
 
+    // Validate coordinates
     if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
       notify.error(
         "Invalid Location",
@@ -148,7 +130,10 @@ export const LocationTab = ({ dataId }) => {
     }
 
     if (latitude < -90 || latitude > 90) {
-      notify.error("Invalid Latitude", "Latitude must be between -90 and 90.");
+      notify.error(
+        "Invalid Latitude",
+        "Latitude must be between -90 and 90.",
+      );
       return;
     }
 
@@ -160,6 +145,7 @@ export const LocationTab = ({ dataId }) => {
       return;
     }
 
+    // Tanzania bounding validation
     if (
       latitude < -11.75 ||
       latitude > -0.99 ||
@@ -176,7 +162,7 @@ export const LocationTab = ({ dataId }) => {
     confirm({
       title: "Update Event?",
       content:
-        "Are you sure you want to update this event with the information provided?",
+        "Are you sure you want to update this event with the information provided.",
       type: "success",
       okText: "Yes, Update",
       cancelText: "No, Cancel",
@@ -188,7 +174,12 @@ export const LocationTab = ({ dataId }) => {
           }, "Updating event location...");
 
           setIndex((prev) => prev + 1);
-          setOriginalData(data);
+
+          setOriginalData({
+            ...data,
+            latitude,
+            longitude,
+          });
 
           setEditingLocation(false);
 
@@ -197,11 +188,45 @@ export const LocationTab = ({ dataId }) => {
             "The event location has been updated successfully.",
           );
         } catch (error) {
-          // your existing error handling...
+          const responseData = error?.response?.data;
+
+          let errorMessage =
+            "Something went wrong while updating the event location.";
+
+          if (typeof responseData === "string") {
+            errorMessage = responseData;
+          } else if (responseData?.error) {
+            errorMessage = responseData.error;
+          } else if (responseData?.detail) {
+            errorMessage = responseData.detail;
+          } else if (responseData?.message) {
+            errorMessage = responseData.message;
+          } else if (
+            responseData &&
+            typeof responseData === "object"
+          ) {
+            const firstKey = Object.keys(responseData)[0];
+            const firstError = responseData[firstKey];
+
+            if (Array.isArray(firstError)) {
+              errorMessage = `${firstError[0]}`;
+            }
+          }
+
+          notify.error(
+            "Failed to Update Location",
+            errorMessage,
+          );
         }
       },
     });
   };
+
+  const handleCancelEdit = () => {
+    setEditingLocation(false);
+    setIndex((prev) => prev + 1);
+  };
+
   return (
     <>
       {loadingData ? (
@@ -209,6 +234,7 @@ export const LocationTab = ({ dataId }) => {
       ) : (
         <div className="sw-details-content">
           <section className="sw-details-card">
+            {/* HEADER */}
             <div className="sw-details-card-header">
               <div>
                 <h2>Location</h2>
@@ -229,10 +255,7 @@ export const LocationTab = ({ dataId }) => {
                   <Button
                     type="text"
                     className="sw-details-cancel-action"
-                    onClick={() => {
-                      setEditingLocation(false);
-                      setIndex((prev) => prev + 1);
-                    }}
+                    onClick={handleCancelEdit}
                   >
                     Cancel
                   </Button>
@@ -249,50 +272,31 @@ export const LocationTab = ({ dataId }) => {
               )}
             </div>
 
+            {/* LOCATION CONTENT */}
             <div className="sw-details-location-page">
               {data ? (
                 <div className="sw-details-map">
                   {editingLocation && (
                     <div className="sw-details-map-hint">
                       <EnvironmentOutlined />
-                      Drag the marker to update the location
+                      <span>
+                        Drag the marker to update the location
+                      </span>
                     </div>
                   )}
-                  <MapContainer
-                    center={[Number(data?.latitude), Number(data?.longitude)]}
-                    zoom={15}
-                    scrollWheelZoom={false}
-                    dragging={editingLocation}
-                    doubleClickZoom={false}
-                    touchZoom={editingLocation}
-                    zoomControl={false}
-                    attributionControl={false}
-                    className="sw-details-map-container"
-                  >
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                    <DraggableLocationMarker
-                      latitude={Number(data?.latitude)}
-                      longitude={Number(data?.longitude)}
-                      editing={editingLocation}
-                      onChange={({ latitude, longitude }) => {
-                        setData((prev) => ({
-                          ...prev,
-                          latitude,
-                          longitude,
-                        }));
-                      }}
-                    />
-
-                    <MapLocationUpdater
-                      latitude={Number(data?.latitude)}
-                      longitude={Number(data?.longitude)}
-                    />
-
-                    <MapResizeHandler />
-
-                    <CustomZoomControl />
-                  </MapContainer>
+                  <LocationMap
+                    latitude={Number(data?.latitude)}
+                    longitude={Number(data?.longitude)}
+                    editing={editingLocation}
+                    onChange={({ latitude, longitude }) => {
+                      setData((prev) => ({
+                        ...prev,
+                        latitude,
+                        longitude,
+                      }));
+                    }}
+                  />
                 </div>
               ) : (
                 <div className="sw-details-map-placeholder">
@@ -301,26 +305,31 @@ export const LocationTab = ({ dataId }) => {
                 </div>
               )}
 
+              {/* LOCATION DETAILS */}
               <div className="sw-details-location-details">
+                {/* ADDRESS */}
                 <div>
                   <span>Address</span>
 
                   {editingLocation ? (
                     <Input
-                      value={data?.address}
+                      value={data?.address ?? ""}
                       onChange={(e) =>
-                        setData({
-                          ...data,
+                        setData((prev) => ({
+                          ...prev,
                           address: e.target.value,
-                        })
+                        }))
                       }
                       className="sw-form-control-edit sw-form-control"
                     />
                   ) : (
-                    <strong>{toSmartTitleCase(data?.address)}</strong>
+                    <strong>
+                      {toSmartTitleCase(data?.address)}
+                    </strong>
                   )}
                 </div>
 
+                {/* LATITUDE */}
                 <div>
                   <span>Latitude</span>
 
@@ -340,6 +349,7 @@ export const LocationTab = ({ dataId }) => {
                   )}
                 </div>
 
+                {/* LONGITUDE */}
                 <div>
                   <span>Longitude</span>
 
@@ -364,97 +374,5 @@ export const LocationTab = ({ dataId }) => {
         </div>
       )}
     </>
-  );
-};
-
-function MapResizeHandler() {
-  const map = require("react-leaflet").useMap();
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      map.invalidateSize();
-    }, 100);
-
-    const handleResize = () => {
-      map.invalidateSize();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [map]);
-
-  return null;
-}
-
-function DraggableLocationMarker({ latitude, longitude, editing, onChange }) {
-  const markerRef = useRef(null);
-
-  const eventHandlers = {
-    dragend() {
-      const marker = markerRef.current;
-
-      if (!marker) return;
-
-      const position = marker.getLatLng();
-
-      onChange({
-        latitude: Number(position.lat.toFixed(6)),
-        longitude: Number(position.lng.toFixed(6)),
-      });
-    },
-  };
-
-  return (
-    <Marker
-      ref={markerRef}
-      position={[latitude, longitude]}
-      icon={locationIcon}
-      draggable={editing}
-      eventHandlers={eventHandlers}
-    />
-  );
-}
-
-function MapLocationUpdater({ latitude, longitude }) {
-  const map = useMap();
-
-  useEffect(() => {
-    if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-      return;
-    }
-
-    map.setView([latitude, longitude], map.getZoom(), {
-      animate: false,
-    });
-  }, [map, latitude, longitude]);
-
-  return null;
-}
-
-const CustomZoomControl = () => {
-  const map = useMap();
-
-  const handleZoomIn = () => {
-    map.zoomIn();
-  };
-
-  const handleZoomOut = () => {
-    map.zoomOut();
-  };
-
-  return (
-    <div className="sw-details-map-zoom-control">
-      <button type="button" onClick={handleZoomIn} aria-label="Zoom in">
-        +
-      </button>
-
-      <button type="button" onClick={handleZoomOut} aria-label="Zoom out">
-        −
-      </button>
-    </div>
   );
 };

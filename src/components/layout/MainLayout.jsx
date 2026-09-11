@@ -31,6 +31,7 @@ import {
   toLowerCase,
   toSmartTitleCase,
 } from "@/lib/utils/char";
+import { useNavigationLoading } from "@/components/common/loading/NavigationLoadingProvider";
 
 const getMenuGroups = (company) => {
   const allowedCategories = company?.allowed_categories || [];
@@ -142,6 +143,13 @@ export default function MainLayout({ children }) {
   const company = useAuthStore((state) => state.company);
   const menuGroups = getMenuGroups(company);
 
+  const { isNavigating, startNavigation, stopNavigation } =
+    useNavigationLoading();
+
+  useEffect(() => {
+    stopNavigation();
+  }, [pathname, stopNavigation]);
+
   const isActive = (href) => {
     if (href === "/dashboard") {
       return pathname === "/dashboard" || pathname === "/";
@@ -172,6 +180,13 @@ export default function MainLayout({ children }) {
     router.replace("/");
   };
 
+  const handleNavigation = (href, label) => {
+    if (pathname === href || pathname.startsWith(`${href}/`)) {
+      return;
+    }
+    startNavigation(`Loading ${label.toLowerCase()}...`);
+  };
+
   return (
     <ProtectedLayout>
       <div className="sw-agent-layout">
@@ -200,7 +215,10 @@ export default function MainLayout({ children }) {
           {/* LOGO */}
 
           <div className="sw-agent-sidebar-logo">
-            <Link href="/dashboard">
+            <Link
+              href="/dashboard"
+              onClick={() => handleNavigation("/dashboard", "dashboard")}
+            >
               <div className="sw-agent-sidebar-logo-mark">
                 <span>S</span>
               </div>
@@ -282,6 +300,9 @@ export default function MainLayout({ children }) {
                                   className={`sw-agent-submenu-link ${
                                     isActive(child.href) ? "active" : ""
                                   }`}
+                                  onClick={() =>
+                                    handleNavigation(child.href, child.label)
+                                  }
                                 >
                                   <span className="sw-agent-submenu-dot" />
 
@@ -297,6 +318,9 @@ export default function MainLayout({ children }) {
                           className={`sw-agent-nav-link ${
                             active ? "active" : ""
                           }`}
+                          onClick={() =>
+                            handleNavigation(item.href, item.label)
+                          }
                         >
                           <span className="sw-agent-nav-icon">{item.icon}</span>
 
@@ -431,7 +455,10 @@ export default function MainLayout({ children }) {
                     <button
                       type="button"
                       className="sw-agent-dropdown-item"
-                      onClick={() => router.push("/profile")}
+                      onClick={() => {
+                        startNavigation("Loading profile...");
+                        router.push("/profile");
+                      }}
                     >
                       <span className="sw-agent-dropdown-icon">
                         <UserOutlined />
@@ -447,7 +474,10 @@ export default function MainLayout({ children }) {
                     <button
                       type="button"
                       className="sw-agent-dropdown-item"
-                      onClick={() => router.push("/settings")}
+                      onClick={() => {
+                        startNavigation("Loading settings...");
+                        router.push("/settings");
+                      }}
                     >
                       <span className="sw-agent-dropdown-icon">
                         <SettingOutlined />
@@ -463,7 +493,10 @@ export default function MainLayout({ children }) {
                     <button
                       type="button"
                       className="sw-agent-dropdown-item"
-                      onClick={() => router.push("/notifications")}
+                      onClick={() => {
+                        startNavigation("Loading notifications...");
+                        router.push("/notifications");
+                      }}
                     >
                       <span className="sw-agent-dropdown-icon">
                         <BellOutlined />
@@ -479,7 +512,10 @@ export default function MainLayout({ children }) {
                     <button
                       type="button"
                       className="sw-agent-dropdown-item"
-                      onClick={() => router.push("/help")}
+                      onClick={() => {
+                        startNavigation("Loading help...");
+                        router.push("/help");
+                      }}
                     >
                       <span className="sw-agent-dropdown-icon">
                         <QuestionCircleOutlined />

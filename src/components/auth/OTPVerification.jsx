@@ -10,7 +10,7 @@ import {
 import { Spin, Alert } from "antd";
 import moment from "moment";
 import { useAuthStore } from "@/stores/authStore";
-
+import { useNavigationLoading } from "@/components/common/loading/NavigationLoadingProvider";
 import { verifyOTP } from "@/services/auth/loginService";
 import { useOtpStore } from "@/stores/otpStore";
 
@@ -28,7 +28,9 @@ export const OTPContent = () => {
 
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
   const [isLoading, setIsLoading] = useState(false);
+  const { startNavigation } = useNavigationLoading();
   const [verifyError, setVerifyError] = useState("");
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const inputRefs = useRef([]);
   // FIX 1: Properly initialize hasExpired ref
@@ -46,7 +48,9 @@ export const OTPContent = () => {
 
   useEffect(() => {
     if (!expiry) {
-      setCountdown(0);
+      setTimeout(() => {
+        setCountdown(0);
+      });
       return;
     }
 
@@ -149,6 +153,8 @@ export const OTPContent = () => {
           platform: response.platform,
           company: response.business || null,
         });
+
+        startNavigation("Preparing your dashboard...");
 
         router.replace("/dashboard");
         return;

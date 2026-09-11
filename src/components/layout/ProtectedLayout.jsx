@@ -17,22 +17,6 @@ export default function ProtectedLayout({ children }) {
     }
   }, [hasHydrated, isAuthenticated, router]);
 
-  // Prevent flicker/flash: render a loading spinner until store hydration finishes
-  if (!hasHydrated) {
-    return (
-      <div
-        style={{
-          display: "flex",
-          height: "100vh",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <Spin size="large" description="Loading session..." />
-      </div>
-    );
-  }
-
   // If not authenticated, prevent rendering dashboard children while redirecting
   if (!isAuthenticated) {
     return null;

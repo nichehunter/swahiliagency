@@ -365,6 +365,7 @@ export const LoginContent = () => {
                     type="button"
                     disabled={loading}
                     className="sw-agent-forgot"
+                    onClick={() => router.push("/auth/reset")}
                   >
                     Forgot password?
                   </button>

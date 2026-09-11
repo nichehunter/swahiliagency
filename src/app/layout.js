@@ -6,11 +6,14 @@ import "@/styles/common/datatable.css";
 import "@/styles/common/form.css";
 import "@/styles/common/datadetails.css";
 import "@/styles/common/skeleton.css";
+import "@/styles/common/mainloading.css";
 
 import { App as AntdApp } from "antd";
 
 import { LoadingProvider } from "@/components/common/LoadingProvider";
 import { NotificationProvider } from "@/components/common/NotificationProvider";
+import NavigationLoadingProvider from "@/components/common/loading/NavigationLoadingProvider";
+import SessionTimeoutProvider from "@/components/common/session/SessionTimeoutProvider";
 
 export default function RootLayout({ children }) {
   return (
@@ -30,7 +33,11 @@ export default function RootLayout({ children }) {
       <body>
         <AntdApp>
           <NotificationProvider>
-            <LoadingProvider>{children}</LoadingProvider>
+            <NavigationLoadingProvider>
+              <SessionTimeoutProvider>
+                <LoadingProvider>{children}</LoadingProvider>
+              </SessionTimeoutProvider>
+            </NavigationLoadingProvider>
           </NotificationProvider>
         </AntdApp>
       </body>

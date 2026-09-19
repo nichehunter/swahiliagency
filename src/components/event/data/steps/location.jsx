@@ -3,7 +3,16 @@
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { Input, DatePicker } from "antd";
 import dayjs from "dayjs";
-import LocationAddMap from "./LocationAddMap";
+import dynamic from "next/dynamic";
+
+const LocationAddMap = dynamic(() => import("./LocationAddMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="sw-details-map-loading">
+      <span>Loading map...</span>
+    </div>
+  ),
+});
 
 export const DateLocation = ({
   values,

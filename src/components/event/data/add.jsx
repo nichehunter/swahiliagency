@@ -303,18 +303,9 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
   const user = useAuthStore((state) => state.user);
   const company = useAuthStore((state) => state.company);
 
-  /* =======================================================
-     RESET
-  ======================================================= */
-
   const handleClose = () => {
-    if (loading) return;
-
     setCurrentStep(0);
-
-    if (onClose) {
-      onClose();
-    }
+    onClose();
   };
 
   const validateCurrentStep = async ({ values, setTouched }) => {
@@ -352,10 +343,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
       };
     }
   };
-
-  /* =======================================================
-     SUBMIT
-  ======================================================= */
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     confirm({
@@ -511,14 +498,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
           const getError = (field) =>
             touched[field] && errors[field] ? errors[field] : null;
 
-          /* =================================================
-             VALIDATE CURRENT STEP
-          ================================================= */
-
-          /* =================================================
-             NEXT
-          ================================================= */
-
           const handleNext = async () => {
             const result = await validateCurrentStep({
               values,
@@ -536,33 +515,17 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
             setCurrentStep((prev) => Math.min(prev + 1, stages.length - 1));
           };
 
-          /* =================================================
-             PREVIOUS
-          ================================================= */
-
           const handlePrevious = () => {
             setCurrentStep((prev) => Math.max(prev - 1, 0));
           };
 
           return (
             <form className="sw-form" onSubmit={handleSubmit} noValidate>
-              {/* =================================================
-                  STEPPER
-              ================================================= */}
-
               <div className="sw-form-stepper">
                 <Steps current={currentStep} items={stages} responsive />
               </div>
 
-              {/* =================================================
-                  STEP CONTENT
-              ================================================= */}
-
               <div className="sw-form-content">
-                {/* =================================================
-                    STEP 1
-                ================================================= */}
-
                 {currentStep === 0 && (
                   <BasicInformation
                     values={values}
@@ -576,10 +539,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
                     getBase64={getBase64}
                   />
                 )}
-
-                {/* =================================================
-                    STEP 2
-                ================================================= */}
 
                 {currentStep === 1 && (
                   <Classification
@@ -595,10 +554,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
                   />
                 )}
 
-                {/* =================================================
-                    STEP 3
-                ================================================= */}
-
                 {currentStep === 2 && (
                   <DateLocation
                     values={values}
@@ -612,10 +567,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
                     getBase64={getBase64}
                   />
                 )}
-
-                {/* =================================================
-                    STEP 4
-                ================================================= */}
 
                 {currentStep === 3 && (
                   <MediaOptions
@@ -631,10 +582,6 @@ export const EventAdd = ({ open, onClose, setIndex }) => {
                   />
                 )}
               </div>
-
-              {/* =================================================
-                  FOOTER
-              ================================================= */}
 
               <div className="sw-form-footer">
                 <div className="sw-form-footer-progress">

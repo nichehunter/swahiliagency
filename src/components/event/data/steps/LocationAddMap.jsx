@@ -179,16 +179,7 @@ export default function LocationAddMap({
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-      <DraggableLocationMarker
-        latitude={mapLatitude}
-        longitude={mapLongitude}
-        editing={editing}
-        onChange={onChange}
-      />
-
-      <MapClickLocation onChange={onChange} />
-
-      <MapLocationUpdater latitude={mapLatitude} longitude={mapLongitude} />
+      <CenterLocationPicker onChange={onChange} />
 
       <MapResizeHandler />
 
@@ -201,33 +192,12 @@ export default function LocationAddMap({
    DRAGGABLE LOCATION MARKER
 ========================================== */
 
-function DraggableLocationMarker({ latitude, longitude, editing, onChange }) {
-  const markerRef = useRef(null);
-
-  const eventHandlers = {
-    dragend() {
-      const marker = markerRef.current;
-
-      if (!marker || !onChange) {
-        return;
-      }
-
-      const position = marker.getLatLng();
-
-      onChange({
-        latitude: Number(position.lat.toFixed(6)),
-        longitude: Number(position.lng.toFixed(6)),
-      });
-    },
-  };
-
+function LocationMarker({ latitude, longitude }) {
   return (
     <Marker
-      ref={markerRef}
       position={[latitude, longitude]}
       icon={locationIcon}
-      draggable={editing}
-      eventHandlers={eventHandlers}
+      draggable={false}
     />
   );
 }
@@ -250,6 +220,58 @@ function MapLocationUpdater({ latitude, longitude }) {
   }, [map, latitude, longitude]);
 
   return null;
+}
+
+function CenterLocationPicker({ onChange }) {
+  const map = useMap();
+
+  useEffect(() => {
+    if (!onChange) {
+      return;
+    }
+
+    const updateLocation = () => {
+      const center = map.getCenter();
+
+      onChange({
+        latitude: Number(center.lat.toFixed(6)),
+        longitude: Number(center.lng.toFixed(6)),
+      });
+    };
+
+    map.on("moveend", updateLocation);
+
+    return () => {
+      map.off("moveend", updateLocation);
+    };
+  }, [map, onChange]);
+
+  return (
+    <div className="sw-details-map-center-marker">
+      <div className="sw-details-location-marker-wrapper">
+        <div className="sw-details-location-pulse" />
+
+        <div className="sw-details-location-marker-inner">
+          <svg
+            width="50"
+            height="50"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M12 21C12 21 19 15.5 19 9.5C19 5.91 15.87 3 12 3C8.13 3 5 5.91 5 9.5C5 15.5 12 21 12 21Z"
+              fill="#ff7a00"
+              stroke="white"
+              strokeWidth="1.5"
+            />
+
+            <circle cx="12" cy="9.5" r="2.5" fill="white" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 /* ==========================================

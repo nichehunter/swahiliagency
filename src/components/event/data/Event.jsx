@@ -6,6 +6,7 @@ import {
   CalendarOutlined,
   CheckCircleOutlined,
   ClockCircleOutlined,
+  CloseCircleOutlined,
   EnvironmentOutlined,
 } from "@ant-design/icons";
 import { Tag } from "antd";
@@ -173,13 +174,14 @@ export default function EventContent() {
             icon: <CheckCircleOutlined />,
           },
 
-          upcoming: {
+          pending: {
             color: "warning",
             icon: <ClockCircleOutlined />,
           },
 
-          completed: {
+          expired: {
             color: "default",
+            icon: <CloseCircleOutlined />,
           },
         };
 

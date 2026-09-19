@@ -3,6 +3,7 @@
 import { EnvironmentOutlined } from "@ant-design/icons";
 import { Input, DatePicker } from "antd";
 import dayjs from "dayjs";
+import LocationAddMap from "./LocationAddMap";
 
 export const DateLocation = ({
   values,
@@ -85,7 +86,7 @@ export const DateLocation = ({
             onChange={handleChange}
             onBlur={handleBlur}
             prefix={<EnvironmentOutlined />}
-            placeholder="e.g. Forodhani Gardens, Stone Town, Zanzibar"
+            placeholder="e.g. Posta, Dar es Salaam"
             className={
               getError("address")
                 ? "sw-form-control sw-form-control-error"
@@ -148,6 +149,32 @@ export const DateLocation = ({
           {getError("longitude") && (
             <span className="sw-form-error">{errors.longitude}</span>
           )}
+        </div>
+        {/* LOCATION MAP */}
+
+        <div className="sw-form-field sw-form-field-full">
+          <div className="sw-location-map-header">
+            <div>
+              <label>Pin Event Location</label>
+
+              <p>
+                Enter coordinates above or drag the marker to set the exact
+                location.
+              </p>
+            </div>
+          </div>
+
+          <div className="sw-location-map-wrapper">
+            <LocationAddMap
+              latitude={values.latitude}
+              longitude={values.longitude}
+              editing={true}
+              onChange={({ latitude, longitude }) => {
+                setFieldValue("latitude", latitude);
+                setFieldValue("longitude", longitude);
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>

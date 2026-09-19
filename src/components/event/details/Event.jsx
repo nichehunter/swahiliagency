@@ -2,7 +2,9 @@
 
 import {
   CalendarOutlined,
+  CheckCircleOutlined,
   ClockCircleOutlined,
+  CloseCircleOutlined,
   DeleteOutlined,
   EditOutlined,
   EnvironmentOutlined,
@@ -202,7 +204,16 @@ export default function EventDetails() {
                   ?.toLowerCase()
                   .replace(/\s+/g, "-")}`}
               >
-                {data?.event_status_name}
+                <span className="sw-event-status">
+                  {data.event_status_name === "pending" ? (
+                    <ClockCircleOutlined />
+                  ) : data.event_status_name === "ongoing" ? (
+                    <CheckCircleOutlined />
+                  ) : (
+                    <CloseCircleOutlined />
+                  )}{" "}
+                  {data?.event_status_name}
+                </span>
               </Tag>
             </div>
 

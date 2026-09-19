@@ -215,6 +215,7 @@ export const OverviewTab = ({ dataId }) => {
 
         setData(response);
         setOriginalData(response);
+        setCategoryId(response?.category_id);
       } catch (error) {
         const responseData = error?.response?.data;
         let errorMessage = "Something went wrong. Please try again.";
@@ -570,27 +571,29 @@ export const OverviewTab = ({ dataId }) => {
                     />
                   </div>
                   {/* STATUS */}
-                  <div className="sw-details-form-field">
-                    <label>Status</label>
-                    <Select
-                      value={data?.status_id || undefined}
-                      options={status?.map((item) => ({
-                        value: item.id,
-                        label: toSmartTitleCase(item.dictionary_item_name),
-                      }))}
-                      loading={loadingStatus}
-                      showSearch
-                      placeholder="Select status"
-                      className="sw-form-select sw-form-select-edit"
-                      onChange={(value, option) => {
-                        setData({
-                          ...data,
-                          status_id: value,
-                          status_name: option?.label || "",
-                        });
-                      }}
-                    />
-                  </div>
+                  {!data?.is_blocked && (
+                    <div className="sw-details-form-field">
+                      <label>Status</label>
+                      <Select
+                        value={data?.status_id || undefined}
+                        options={status?.map((item) => ({
+                          value: item.id,
+                          label: toSmartTitleCase(item.dictionary_item_name),
+                        }))}
+                        loading={loadingStatus}
+                        showSearch
+                        placeholder="Select status"
+                        className="sw-form-select sw-form-select-edit"
+                        onChange={(value, option) => {
+                          setData({
+                            ...data,
+                            status_id: value,
+                            status_name: option?.label || "",
+                          });
+                        }}
+                      />
+                    </div>
+                  )}
                 </div>
               ) : (
                 <>

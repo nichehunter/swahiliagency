@@ -45,7 +45,13 @@ const validationSchema = Yup.object({
 
   description: Yup.string().trim().required("This field is required"),
 
-  address: Yup.string().trim().required("This field is required"),
+  address: Yup.string()
+    .trim()
+    .required("This field is required")
+    .matches(
+      /^[^,\s][^,]*\s*,\s*[^,\s][^,]*$/,
+      "Enter location as Place, City",
+    ),
 
   category_id: Yup.number()
     .required("This field is required")
@@ -163,7 +169,13 @@ const stepSchemas = [
         },
       ),
 
-    address: Yup.string().trim().required("Venue address is required"),
+    address: Yup.string()
+      .trim()
+      .required("This field is required")
+      .matches(
+        /^[^,\s][^,]*\s*,\s*[^,\s][^,]*$/,
+        "Enter location as Place, City",
+      ),
 
     latitude: Yup.number()
       .typeError("Latitude must be a number")

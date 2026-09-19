@@ -209,6 +209,14 @@
   font-weight: 600 !important;
 }
 
+.sw-event-status {
+  font-size: 13px;
+}
+
+.sw-event-status .anticon {
+  font-size: 10px;
+}
+
 .sw-details-slug {
   margin: 5px 0 0;
   color: #a0acba;
@@ -507,10 +515,10 @@
 }
 
 /* Upcoming */
-.sw-details-hero-status.status-upcoming {
-  color: #2563eb;
-  background: #eff6ff;
-  border-color: #bfdbfe;
+.sw-details-hero-status.status-pending {
+  color: #d97706;
+  background: #fffbeb;
+  border-color: #fde68a;
 }
 
 /* Ongoing */
